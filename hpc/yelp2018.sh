@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=n2v_example
+#SBATCH --job-name=n2v_yelp2018
 #SBATCH --output=logs/%x-%j.out
 #SBATCH -A st_graphs
 #SBATCH -p shared_dlt
@@ -17,7 +17,7 @@ source /share/apps/python/anaconda3.2019.3/etc/profile.d/conda.sh
 source activate node2vec
 
 echo "CUDA_VISIBLE_DEVICES: ${CUDA_VISISBLE_DEVICES}"
-dataset=example
+dataset=yelp2018
 printf "Running node2vec on dataset=${dataset}\n"
 date
 
@@ -38,6 +38,7 @@ EMBEDDING_MODEL_FILENAME=$OUTPUT_DIR/${dataset}.model
 
 printf "Going to REPO_DIR=${REPO_DIR}\n"
 cd $REPO_DIR
+
 python example.py $EDGELIST_FILENAME $EMBEDDING_FILENAME $EMBEDDING_MODEL_FILENAME
 printf "Finished"
 date

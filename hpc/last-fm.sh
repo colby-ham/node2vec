@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=n2v_example
+#SBATCH --job-name=n2v_last-fm
 #SBATCH --output=logs/%x-%j.out
 #SBATCH -A st_graphs
 #SBATCH -p shared_dlt
@@ -17,7 +17,7 @@ source /share/apps/python/anaconda3.2019.3/etc/profile.d/conda.sh
 source activate node2vec
 
 echo "CUDA_VISIBLE_DEVICES: ${CUDA_VISISBLE_DEVICES}"
-dataset=example
+dataset=last-fm
 printf "Running node2vec on dataset=${dataset}\n"
 date
 
