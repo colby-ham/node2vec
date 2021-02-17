@@ -7,8 +7,8 @@ import sys
 #EMBEDDING_MODEL_FILENAME = './embeddings.model'
 EMBEDDING_FILENAME = sys.argv[1]
 EMBEDDING_MODEL_FILENAME = sys.argv[2]
-print(f"EMBEDDING_FILENAME: ${EMBEDDING_FILENAME}")
-print(f"EMBEDDING_MODEL_FILENAME: ${EMBEDDING_MODEL_FILENAME}")
+print(f"EMBEDDING_FILENAME: {EMBEDDING_FILENAME}")
+print(f"EMBEDDING_MODEL_FILENAME: {EMBEDDING_MODEL_FILENAME}")
 
 print("Create a graph")
 graph = nx.fast_gnp_random_graph(n=100, p=0.5)
