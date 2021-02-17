@@ -1,10 +1,10 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-#SBATCH --job-name=bprmf
+#SBATCH --job-name=n2v_example
 #SBATCH --output=logs/%x-%j.out
-#SBATCH -A st
+#SBATCH -A st_graphs
 #SBATCH -p shared_dlt
-#SBATCH -N 1
+#SBATCH -n 1
 #SBATCH --ntasks-per-node=4
 #SBATCH --gres=gpu:1
 #SBATCH -t 3-23:59:00
@@ -18,7 +18,7 @@ source activate node2vec
 
 echo "CUDA_VISIBLE_DEVICES: ${CUDA_VISISBLE_DEVICES}"
 dataset=example
-printf "Running node2vec on dataset=${dataset}"
+printf "Running node2vec on dataset=${dataset}\n"
 
 # Code location
 REPO_DIR=~/recommendation/node2vec
@@ -33,7 +33,7 @@ EMBEDDING_FILENAME=$OUTPUT_DIR/${dataset}.emb
 EMBEDDING_MODEL_FILENAME=$OUTPUT_DIR/${dataset}.model
 
 
-printf "Going to REPO_DIR=${REPO_DIR}"
+printf "Going to REPO_DIR=${REPO_DIR}\n"
 cd $REPO_DIR
 python example.py $EMBEDDING_FILENAME $EMBEDDING_MODEL_FILENAME
 printf "Finished"
