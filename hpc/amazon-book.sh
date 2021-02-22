@@ -3,9 +3,9 @@
 #SBATCH --job-name=n2v_amazon-book
 #SBATCH --output=logs/%x-%j.out
 #SBATCH -A st_graphs
-#SBATCH -p shared_dlt
+#SBATCH -p shared_fat
 #SBATCH -n 1
-#SBATCH --ntasks-per-node=4
+#SBATCH --ntasks-per-node=16
 #SBATCH --gres=gpu:1
 #SBATCH -t 3-23:59:00
 
@@ -30,14 +30,16 @@ N2V_DIR=$SHARED_DIR/embeddings/node2vec
 DATASET_DIR=$N2V_DIR/$dataset
 INPUT_DIR=$DATASET_DIR/input
 OUTPUT_DIR=$DATASET_DIR/output
+TMP_DIR=$DATASET_DIR/tmp
 
 EDGELIST_FILENAME=$INPUT_DIR/${dataset}.edgelist
 EMBEDDING_FILENAME=$OUTPUT_DIR/${dataset}.emb
 EMBEDDING_MODEL_FILENAME=$OUTPUT_DIR/${dataset}.model
+EMBEDDING_TEMP_FOLDER_DIRNAME=$TMP_DIR
 
 
 printf "Going to REPO_DIR=${REPO_DIR}\n"
 cd $REPO_DIR
-python example.py $EDGELIST_FILENAME $EMBEDDING_FILENAME $EMBEDDING_MODEL_FILENAME
+python amazon-book.py $EDGELIST_FILENAME $EMBEDDING_FILENAME $EMBEDDING_MODEL_FILENAME $EMBEDDING_TEMP_FOLDER_DIRNAME
 printf "Finished"
 date

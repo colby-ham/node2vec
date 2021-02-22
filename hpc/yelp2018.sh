@@ -5,7 +5,7 @@
 #SBATCH -A st_graphs
 #SBATCH -p shared_dlt
 #SBATCH -n 1
-#SBATCH --ntasks-per-node=4
+#SBATCH --ntasks-per-node=8
 #SBATCH --gres=gpu:1
 #SBATCH -t 3-23:59:00
 
